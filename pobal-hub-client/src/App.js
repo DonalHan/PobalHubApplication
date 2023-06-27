@@ -1,18 +1,19 @@
 import React from 'react';
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { useMode } from './theme';
-import Sidebar from './HomePage/sidebar';
+import Dashboard from './HomePage/Dashboard';
+
+
+
 
 function App() {
   const theme = useMode();
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Sidebar />
+      <Dashboard />
     </ThemeProvider>
-
   )
-  
 }
 
 export default App;

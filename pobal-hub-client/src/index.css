@@ -1,0 +1,11 @@
+.parent-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;   /* This will make your parent container occupy the full viewport height */
+}
+
+.map-container {
+  height: 700px;
+  width: 700px;
+}
