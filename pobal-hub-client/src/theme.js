@@ -88,26 +88,45 @@ export const themeSettings = () => {
       h1: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 40,
-           },
+        margin: 0,
+        padding: 0,
+        border: 0,
+      },
       h2: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 32,
+        margin: 0,
+        padding: 0,
+        border: 0,
       },
       h3: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 24,
+        margin: 0,
+        padding: 0,
+        border: 0,
       },
       h4: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 20,
+        margin: 0,
+        padding: 0,
+        border: 0,
+        
       },
       h5: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 16,
+        margin: 0,
+        padding: 0,
+        border: 0,
       },
       h6: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 14,
+        margin: 0,
+        padding: 0,
+        border: 0,
       },
     },
   };
