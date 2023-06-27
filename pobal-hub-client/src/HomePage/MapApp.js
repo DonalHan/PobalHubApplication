@@ -29,6 +29,8 @@ function MapApp() {
     });
   });
 
+  
+
   return (
     <div className="parent-container">
       <div ref={mapContainer} className="map-container" />
