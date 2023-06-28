@@ -13,7 +13,7 @@ function HouseList() {
   }, []);
 
   return (
-    <Box sx={{ width: 300, padding: 1, bgcolor: 'background.secondary', height: '700px', overflowY: 'auto'}}>
+    <Box sx={{ width: '23%', padding: 1, bgcolor: 'background.secondary', height: '100%', overflowY: 'auto'}}>
       <div>
         {houses.map(house => (
           <HouseItem key={house.id} house={house} />

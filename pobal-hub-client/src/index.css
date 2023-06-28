@@ -1,13 +1,7 @@
-.parent-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;   /* This will make your parent container occupy the full viewport height */
-}
 
 .map-container {
-  height: 700px;
-  width: 700px;
+  height: 100vh;
+  width: 100vh;
 }
 h1
 {
@@ -39,5 +33,24 @@ h6
 {
   margin-block-start: 0;
   margin-block-end: 0;
-  
 }
+
+
+.panel {
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 100%;
+  background-color: #0C101B;
+  padding: 20px;
+  box-sizing: border-box;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+
+.panel-visible {
+  transform: translateX(0);
+}
+

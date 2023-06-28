@@ -12,7 +12,7 @@ function Sidebar() {
 
   return (
 
-    <Box sx={{ width: 250, padding: 3, bgcolor: 'background.secondary', height: '100vh' }}>
+    <Box sx={{ width: 250, padding: 3, bgcolor: 'background.secondary', height: '100vh', marginRight: 0}}>
         <Box sx={{ p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Avatar src="profile.jpg" sx={{ width: 80, height: 80 }} /> {/* Replace "profile.jpg" with the path to your image */}
             <Typography variant="h3" sx={{ mt: 1 }}>Donal Hanway</Typography> {/* Replace "Your Name" with the actual name */}
