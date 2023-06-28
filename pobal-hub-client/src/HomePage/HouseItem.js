@@ -5,7 +5,10 @@ import HouseIcon from '@mui/icons-material/House';
 function HouseItem({ house }) {
   return (
     <Box sx={{ display: 'flex', width: '95%', m: 1, bgcolor: 'background.default' }}>
-      <Box sx={{ flex: 2, bgcolor: 'neutral.light' }}>Image</Box>
+      <Box sx={{ flex: 2, bgcolor: 'neutral.light' }}>
+         <img src={house.images[0]} alt={house.address} style={{width: "100%", height: "auto"}}/>
+
+      </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', flex: 3, p: 1.5 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}> 
           <HouseIcon sx={{ color: 'secondary.main', mr: 1 }}/>
