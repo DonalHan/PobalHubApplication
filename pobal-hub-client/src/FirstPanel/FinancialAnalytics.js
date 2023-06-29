@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Box } from '@mui/material';
 import Slideshow from './SlideShow';
+import IndexCircle from './IndexCircle';
 
 const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
     // Add state to handle the visibility of the panel
@@ -34,11 +35,21 @@ const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
     return (
       <div ref={panelRef} className={`panel ${isVisible ? 'panel-visible' : ''}`}>
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-          <Box sx={{bgcolor: 'background.default', width:'90%', height: '60vh', margin:'10px'}}>
-            {houseData && <Slideshow images={houseData.images} />}
-            <Box component="span" sx={{ fontSize: '2.5vw', m:2, ml: 4, mt: 3 }}>{houseData && houseData.address}</Box>
-            <Box component="div" sx={{ fontSize: '1.6vw',  ml: 4, mt: 0, p: 0, color: 'secondary.main' }}>{houseData && houseData.price}</Box>
-          </Box>
+            <Box sx={{bgcolor: 'background.default', width:'90%', height: '60%', margin:'10px', display: 'flex', justifyContent: 'space-evenly'}}>
+                <Box>
+                    {houseData && <Slideshow images={houseData.images} />}
+                    <Box component="span" sx={{ fontSize: '2.5vw', ml: 4, mt: 0 }}>{houseData && houseData.address}</Box>
+                    <Box component="div" sx={{ fontSize: '1.6vw',  ml: 4, mb: 2, p: 0, color: 'secondary.main' }}>{houseData && houseData.price}</Box>  
+                </Box>
+
+
+                <Box sx={{m: 3}}>
+                    <IndexCircle/>
+                </Box>
+                
+                
+
+            </Box>
           <Box sx={{bgcolor: 'background.default', width:'90%', height: '60vh', margin:'10px'}}></Box>
           <Box sx={{bgcolor: 'background.default', width:'90%', height: '60vh', margin:'10px'}}></Box>
           <Box sx={{bgcolor: 'background.default', width:'90%', height: '60vh', margin:'10px'}}></Box>

@@ -5,7 +5,6 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Box } from '@mui/material';
 
 function Slideshow({  images = [] }) {
-  
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -22,8 +21,8 @@ function Slideshow({  images = [] }) {
   };
 
   return (
-    <Box sx={{display: 'flex', alignItems: 'center', m:0, ml: 4, mt: 4, width: '110vh', height: 'auto'}}>
-      <Box sx={{position: 'relative', width: '110vh', height: 'auto'}}>
+    <Box sx={{display: 'flex', flexDirection: 'row', ml: 4, mt: 4, width: '100%', height: 'auto'}}>
+      <Box sx={{position: 'relative', flex: 3}}>
         <IconButton onClick={handlePrev} sx={{position: 'absolute', top: '50%', left: 0, transform: 'translateY(-50%)'}}>
           <ArrowBackIosIcon />
         </IconButton>
@@ -32,13 +31,13 @@ function Slideshow({  images = [] }) {
           <ArrowForwardIosIcon />
         </IconButton>
       </Box>
-      <Box sx={{display: 'flex', flexDirection: 'column', marginLeft: 1, width: '110vh', height: 'auto'}}>
+      <Box sx={{display: 'flex', flexDirection: 'column', marginLeft: 1, flex: 1}}>
         {images.map((img, index) => (
             <img 
                 key={index} 
                 src={img} 
                 alt="Thumbnail" 
-                style={{ width: '25%', cursor: 'pointer', padding: 5}} 
+                style={{ width: '75%', cursor: 'pointer', padding: 5}} 
                 onClick={() => setActiveIndex(index)}
             />
         ))}
