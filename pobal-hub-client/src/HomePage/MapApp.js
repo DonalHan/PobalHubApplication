@@ -36,7 +36,7 @@ function MapApp() {
     if (!map.current || !houses) return; // wait for map to initialize and houses to be available
 
     houses.forEach(house => {
-      // create a marker for each feature and add it to the map
+      // create a marker for each house passed in and add it to the map
       const marker = new mapboxgl.Marker()
         .setLngLat(house.coordinates)
         .addTo(map.current);
