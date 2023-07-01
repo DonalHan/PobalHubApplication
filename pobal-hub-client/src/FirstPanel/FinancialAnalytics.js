@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import PrintIcon from '@mui/icons-material/Print';
+import ShareIcon from '@mui/icons-material/Share';
 import Slideshow from './SlideShow';
 import IndexCircle from './IndexCircle';
+import DescriptionPanel from './DescriptionPanel';
+
 
 const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
     // Add state to handle the visibility of the panel
     const [isVisible, setIsVisible] = useState(false);
-  
     const panelRef = useRef(); // Create a ref to the panel
   
     useEffect(() => {
@@ -25,12 +29,15 @@ const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
             setIsVisible(false);
           }
       }
+
   
       document.addEventListener("mousedown", handleClickOutside);
       return () => {
         document.removeEventListener("mousedown", handleClickOutside);
       };
     }, [setSelectedHouse]); // include setSelectedHouse in the dependency array
+    
+
   
     return (
       <div ref={panelRef} className={`panel ${isVisible ? 'panel-visible' : ''}`}>
@@ -43,14 +50,21 @@ const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
                 </Box>
 
 
-                <Box sx={{m: 3}}>
+                <Box sx={{m: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <IndexCircle/>
+                    <Typography variant="h3" sx={{ mt: 3, color: 'secondary.main', fontSize: '150%', textDecoration: 'underline', cursor: 'pointer'}}>Neighbourhood Index</Typography> 
+                    <Box sx={{mt: 5, color: 'secondary.main'}}>
+                        <FavoriteIcon sx={{ml: 1, mr: 1, cursor: 'pointer'}}/>
+                        <PrintIcon sx={{ml: 1, mr: 1, cursor: 'pointer'}}/>
+                        <ShareIcon sx={{ml: 1, mr: 1, cursor: 'pointer'}}/>
+                    </Box>
                 </Box>
-                
-                
-
             </Box>
-          <Box sx={{bgcolor: 'background.default', width:'90%', height: '60vh', margin:'10px'}}></Box>
+
+            
+            <DescriptionPanel description={houseData && houseData.description} coordinates={houseData && houseData.coordinates} />
+
+
           <Box sx={{bgcolor: 'background.default', width:'90%', height: '60vh', margin:'10px'}}></Box>
           <Box sx={{bgcolor: 'background.default', width:'90%', height: '60vh', margin:'10px'}}></Box>
         </Box>

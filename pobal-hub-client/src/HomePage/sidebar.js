@@ -29,7 +29,7 @@ function Sidebar() {
         </Box>
 
         <Box sx = {{paddingTop: 1, display: 'flex', flexDirection: 'column'}} >
-            <Typography variant="h6" sx={{ mt: 1 }} fontFamily='sans-serif'>Price Filter: </Typography> {/* Replace "Your Name" with the actual name */}
+            <Typography variant="h6" sx={{ mt: 1 }}>Price Filter: </Typography> {/* Replace "Your Name" with the actual name */}
 
             <Slider
                 defaultValue={30}
