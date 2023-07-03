@@ -6,6 +6,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import Slideshow from './SlideShow';
 import IndexCircle from './IndexCircle';
 import DescriptionPanel from './DescriptionPanel';
+import BarChart from './BarChart';
+import MyResponsiveLine from './LineChart';
 
 
 const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
@@ -64,9 +66,13 @@ const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
             
             <DescriptionPanel description={houseData && houseData.description} coordinates={houseData && houseData.coordinates} />
 
+            <Box sx={{bgcolor: 'background.default', width:'90%', height: '50vh', margin:'10px'}}>
+                {houseData && <BarChart currentHousePrice={houseData.price}/>}
+            </Box>
 
-          <Box sx={{bgcolor: 'background.default', width:'90%', height: '60vh', margin:'10px'}}></Box>
-          <Box sx={{bgcolor: 'background.default', width:'90%', height: '60vh', margin:'10px'}}></Box>
+          <Box sx={{bgcolor: 'background.default', width:'90%', height: '40vh', margin:'10px'}}>
+            {houseData && <MyResponsiveLine/>}
+          </Box>
         </Box>
       </div>
     );
