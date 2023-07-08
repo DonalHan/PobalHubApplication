@@ -5,7 +5,7 @@ const MyResponsivePie = ({ socialData }) => {
   const data = [
     { id: 'Parks & Greenways', value: socialData.proximityToParks },
     { id: 'Amenities', value: socialData.proximityToAmenities },
-    { id: 'City Center Access', value: socialData.proximityToCityCenter },
+    { id: 'City Center', value: socialData.proximityToCityCenter },
     { id: 'Transport', value: socialData.proximityToTransport },
     { id: 'Crime Index', value: socialData.crimeRate },
   ];
@@ -56,16 +56,16 @@ const MyResponsivePie = ({ socialData }) => {
         fill={[
           { match: { id: 'Parks & Greenways' }},
           { match: { id: 'Amenities' } },
-          { match: { id: 'City Center Access' } },
+          { match: { id: 'City Center' } },
           { match: { id: 'Transport' } },
           { match: { id: 'Crime Index' } },
         ]}
       />
       <Box  position="absolute" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 4}}>
-        <Typography variant="h1" color="text.primary">
+        <Typography variant="h1" color="text.primary" fontSize={'1.8vw'}>
           {totalScore} 
         </Typography>
-        <Typography variant="h4" color="text.primary">
+        <Typography variant="h4" color="text.primary"fontSize={'1vw'}>
           Points
       </Typography>
       </Box>

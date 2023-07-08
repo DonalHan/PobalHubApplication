@@ -21,14 +21,14 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
       </Box>
 
 
-      <Box sx={{bgcolor: 'background.default', width:'55vw', height: '30vw', p: 2}}>
+      <Box sx={{bgcolor: 'background.default', width:'90%', height: '25vw', p: 2}}>
         
-        <Box>
+        <Box sx={{pt: 1, pl: 3, mb: 2}}>
           <Typography variant="h3">Summary</Typography>
           <Typography variant="h4" sx={{color: 'secondary.main'}}>has the following neighbourhood rating</Typography>
         </Box>
-        <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', height: '100%'}}>
-            <Box sx={{display: 'flex', flexDirection: 'column'}}>
+        <Box sx={{display: 'flex', justifyContent: 'space-between',alignItems: 'center', width: '53vw', height: '15vw'}}>
+            <Box sx={{display: 'flex', flexDirection: 'column', mt: '1vw'}}>
               <Box sx={{display: 'flex', alignItems: 'center', ml: 4}}>
                 <CheckCircleOutlineIcon/>
                 <Typography variant="h5" sx={{ p: 1, fontSize: '1.2vw'}}>Has great acces to parks, greenways and beaches</Typography>
@@ -54,8 +54,8 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
                 <Typography variant="h5" sx={{ p: 1, fontSize: '1.2vw'}}>Has low crime rate index</Typography>
               </Box>
             </Box>
-            <Box sx={{width: '40vh', height: '50vh'}}>
-              <MyResponsivePie socialData={mockSocialData} />
+            <Box sx={{width:'50%', height: '35vh', padding:'10px'}}>
+               <MyResponsivePie socialData={mockSocialData} />
             </Box>
 
         </Box>
