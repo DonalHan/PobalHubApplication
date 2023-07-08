@@ -1,0 +1,117 @@
+import React from 'react';
+import { Box, Typography, IconButton } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import IndexCircle from '../FirstPanel/IndexCircle';
+import mockSocialData from './MockSocialData';
+import MyResponsivePie from './PieChart';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+
+const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
+  const handleBackClick = () => {
+    setShowSocialAnalytics(false);
+  };
+
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      <Box sx={{display: 'flex', justifyContent: 'space-between', width: '100%', padding: '10px'}}>
+        <Typography variant="h1">Social Analytics</Typography>
+        <IconButton onClick={handleBackClick}>
+          <ArrowBackIcon />
+        </IconButton>
+      </Box>
+
+
+      <Box sx={{bgcolor: 'background.default', width:'55vw', height: '30vw', p: 2}}>
+        
+        <Box>
+          <Typography variant="h3">Summary</Typography>
+          <Typography variant="h4" sx={{color: 'secondary.main'}}>has the following neighbourhood rating</Typography>
+        </Box>
+        <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', height: '100%'}}>
+            <Box sx={{display: 'flex', flexDirection: 'column'}}>
+              <Box sx={{display: 'flex', alignItems: 'center', ml: 4}}>
+                <CheckCircleOutlineIcon/>
+                <Typography variant="h5" sx={{ p: 1, fontSize: '1.2vw'}}>Has great acces to parks, greenways and beaches</Typography>
+              </Box>
+              
+              <Box sx={{display: 'flex', alignItems: 'center', ml: 4}}>
+                <CheckCircleOutlineIcon/>
+                <Typography variant="h5" sx={{ p: 1, fontSize: '1.2vw'}}>Has excellent access to amenities</Typography>
+              </Box>
+
+              <Box sx={{display: 'flex', alignItems: 'center', ml: 4}}>
+                <CheckCircleOutlineIcon/>
+                <Typography variant="h5" sx={{ p: 1, fontSize: '1.2vw'}}>Has poor access to the city center</Typography>
+              </Box>
+
+              <Box sx={{display: 'flex', alignItems: 'center', ml: 4}}>
+                <CheckCircleOutlineIcon/>
+                <Typography variant="h5" sx={{ p: 1, fontSize: '1.2vw'}}>Has poor access to transport</Typography>
+              </Box>
+
+              <Box sx={{display: 'flex', alignItems: 'center', ml: 4}}>
+                <CheckCircleOutlineIcon/>
+                <Typography variant="h5" sx={{ p: 1, fontSize: '1.2vw'}}>Has low crime rate index</Typography>
+              </Box>
+            </Box>
+            <Box sx={{width: '40vh', height: '50vh'}}>
+              <MyResponsivePie socialData={mockSocialData} />
+            </Box>
+
+        </Box>
+  
+      </Box>
+
+      <Box sx={{display: 'flex', width: '92%', justifyContent: 'space-between'}}>
+        <Box sx={{bgcolor: 'background.default', width:'33%', height: '20vh', margin:'10px'}}>
+        <   Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                <Typography variant="h5" sx={{m: 2, fontSize: '1.2vw'}}>Parks & Greenways{socialData && socialData.proximityToParks}</Typography>
+                <Box sx={{p: 2}}>  {/* Or whatever margin values you want */}
+                    <IndexCircle size='4' showText={false}/>
+                </Box>
+            </Box>
+        </Box>
+
+        <Box sx={{bgcolor: 'background.default', width:'33%', height: '20vh', margin:'10px'}}>
+            <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                <Typography variant="h5" sx={{m: 2, fontSize: '1.2vw'}}>Amenities{socialData && socialData.proximityToParks}</Typography>
+                <Box sx={{p: 2}}>  {/* Or whatever margin values you want */}
+                    <IndexCircle size='4' showText={false}/>
+                </Box>
+            </Box>
+        </Box>
+
+        <Box sx={{bgcolor: 'background.default', width:'33%', height: '20vh', margin:'10px'}}>
+            <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                <Typography variant="h5" sx={{m: 2, fontSize: '1.2vw'}}>City Center Access{socialData && socialData.proximityToParks}</Typography>
+                <Box sx={{p: 2}}>  {/* Or whatever margin values you want */}
+                    <IndexCircle size='4' showText={false}/>
+                </Box>
+            </Box>
+        </Box>
+      </Box>
+     
+      <Box sx={{display: 'flex', width: '92%', justifyContent: 'space-between'}}>
+        <Box sx={{bgcolor: 'background.default', width:'50%', height: '20vh', margin:'10px'}}>
+            <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                <Typography variant="h5" sx={{m: 2, fontSize: '1.2vw'}}>Transport Index{socialData && socialData.proximityToParks}</Typography>
+                <Box sx={{p: 2}}>  {/* Or whatever margin values you want */}
+                    <IndexCircle size='4' showText={false}/>
+                </Box>
+            </Box>
+        </Box>
+        
+        <Box sx={{bgcolor: 'background.default', width:'50%', height: '20vh', margin:'10px'}}>
+            <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                <Typography variant="h5" sx={{m: 2, fontSize: '1.2vw'}}>Crime Rate Index{socialData && socialData.proximityToParks}</Typography>
+                <Box sx={{p: 2}}>  {/* Or whatever margin values you want */}
+                    <IndexCircle size='4' showText={false}/>
+                </Box>
+            </Box>        </Box>
+      </Box>
+    </Box>
+    
+  );
+};
+
+export default SocialAnalytics;
