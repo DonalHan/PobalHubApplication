@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 
 const MyResponsivePie = ({ socialData }) => {
   const data = [
-    { id: 'Parks & Greenways', value: socialData.proximityToParks },
+    { id: 'Parks', value: socialData.proximityToParks },
     { id: 'Amenities', value: socialData.proximityToAmenities },
     { id: 'City Center', value: socialData.proximityToCityCenter },
     { id: 'Transport', value: socialData.proximityToTransport },
@@ -54,7 +54,7 @@ const MyResponsivePie = ({ socialData }) => {
           },
         ]}
         fill={[
-          { match: { id: 'Parks & Greenways' }},
+          { match: { id: 'Parks' }},
           { match: { id: 'Amenities' } },
           { match: { id: 'City Center' } },
           { match: { id: 'Transport' } },
