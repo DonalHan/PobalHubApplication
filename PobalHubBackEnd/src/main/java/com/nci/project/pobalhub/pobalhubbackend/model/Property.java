@@ -23,7 +23,8 @@ public class Property {
     private String type;
 
     @Column(name = "price")
-    private String price;
+    private BigDecimal price;
+
 
     @Column(name = "property_description")
     private String propertyDescription;
@@ -74,6 +75,14 @@ public class Property {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public String getPropertyDescription() {
