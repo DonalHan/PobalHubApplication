@@ -22,6 +22,9 @@ public class Property {
     @Column(name = "type")
     private String type;
 
+    @Column(name = "price")
+    private String price;
+
     @Column(name = "property_description")
     private String propertyDescription;
 
@@ -128,12 +131,12 @@ public class Property {
                 ", address='" + address + '\'' +
                 ", eircode='" + eircode + '\'' +
                 ", type='" + type + '\'' +
+                ", price='" + price + '\'' +
                 ", propertyDescription='" + propertyDescription + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 ", neighborhood=" + neighborhood +
                 ", socialAnalytics=" + socialAnalytics +
-                ", propertyImages=" + propertyImages +
                 '}';
     }
 }

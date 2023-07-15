@@ -23,5 +23,4 @@ public class PropertyService {
         return propertyRepository.save(property);
     }
 
-    //... other operations (create, update, delete, etc.) can be defined here
 }
