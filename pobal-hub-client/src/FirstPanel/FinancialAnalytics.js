@@ -74,7 +74,7 @@ const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
             <DescriptionPanel description={houseData && houseData.propertyDescription} coordinates={houseData && [houseData.longitude, houseData.latitude]} />
 
             <Box sx={{bgcolor: 'background.default', width:'90%', height: '50vh', margin:'10px'}}>
-              {houseData && <BarChart currentHousePrice={houseData.price}/>}
+              {houseData && <BarChart currentHousePrice={houseData.price} neighborhoodId={houseData.neighborhoodId}/>}
             </Box>
 
             <Box sx={{bgcolor: 'background.default', width:'90%', height: '40vh', margin:'10px'}}>

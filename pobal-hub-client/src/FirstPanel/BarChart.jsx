@@ -1,13 +1,37 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, CircularProgress  } from '@mui/material';
 import { ResponsiveBar } from '@nivo/bar';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
-const BarChart = ({ currentHousePrice }) => {
+const BarChart = ({ currentHousePrice, neighborhoodId }) => {
+  const [neighborhood, setNeighborhood] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    const getNeighborhoodData = async () => {
+      try {
+          const response = await axios.get(`/api/neighborhood/${neighborhoodId}`);
+          console.log(response.data);
+          setNeighborhood(response.data);
+          setLoading(false);
+      } catch (error) {
+          console.error(`Error retrieving neighborhood data: ${error}`);
+          setLoading(false);
+      }
+    };
+
+    getNeighborhoodData();
+  }, [neighborhoodId]);
+
+  if (loading) {
+    return <CircularProgress />
+  }
+
   const housePriceNumber = currentHousePrice;
-
-  const averagePrice = 750000;
+  const averagePrice = neighborhood.averagePrice;
   const difference = housePriceNumber - averagePrice;
-    // Mock data
-    const data = [
+    
+  const data = [
         {
             "suburb": "Current Property",
             "price": housePriceNumber,
@@ -31,7 +55,6 @@ const BarChart = ({ currentHousePrice }) => {
                 </Box>
               </Box>
 
-              
               <ResponsiveBar
                 data={data}
                 keys={['price']}
@@ -94,8 +117,6 @@ const BarChart = ({ currentHousePrice }) => {
             />
 
         </Box>
-
-
     );
 }
 

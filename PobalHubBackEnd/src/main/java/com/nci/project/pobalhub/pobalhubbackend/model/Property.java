@@ -42,6 +42,9 @@ public class Property {
     @JoinColumn(name = "neighborhood_id")
     private Neighborhood neighborhood;
 
+    @Transient
+    private Integer neighborhoodId;
+
     @JsonManagedReference
     @OneToOne(mappedBy = "property")
     private SocialAnalytics socialAnalytics;
@@ -120,6 +123,9 @@ public class Property {
 
     public void setNeighborhood(Neighborhood neighborhood) {
         this.neighborhood = neighborhood;
+        if (neighborhood != null) {
+            this.neighborhoodId = neighborhood.getId();
+        }
     }
 
     public SocialAnalytics getSocialAnalytics() {
@@ -137,6 +143,11 @@ public class Property {
     public void setPropertyImages(List<PropertyImage> propertyImages) {
         this.propertyImages = propertyImages;
     }
+
+    public Integer getNeighborhoodId() {
+        return this.neighborhood.getId();
+    }
+
 
     @Override
     public String toString() {
