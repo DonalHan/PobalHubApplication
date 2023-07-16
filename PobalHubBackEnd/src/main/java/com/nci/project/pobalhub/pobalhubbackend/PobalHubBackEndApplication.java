@@ -24,15 +24,6 @@ public class PobalHubBackEndApplication {
                 System.out.println(property.toString());
             }
             System.out.println();
-
-            // add a new property and then fetch it
-            System.out.println("Creating and finding a new property:");
-            System.out.println("-------------------------------");
-            Property newProperty = new Property();
-            // set the properties of newProperty as required
-            newProperty = propertyService.save(newProperty);
-            System.out.println(propertyService.findAll());
-            System.out.println();
         };
     }
 }

@@ -28,7 +28,7 @@ public class PropertyService {
     }
 
     /*A method that reverse engineers the price appreciation of a property based off of the neighborhood average it comes from*/
-    public Map<Integer, Double> getPropertyAppreciationOverTenYearsIncludingPrediction(Integer propertyId) {
+    public Map<Integer, Double> getPropertyAppreciation(Integer propertyId) {
         /* Retrieve the property */
         Property property = propertyRepository.findById(propertyId).orElse(null);
         /* Validation */

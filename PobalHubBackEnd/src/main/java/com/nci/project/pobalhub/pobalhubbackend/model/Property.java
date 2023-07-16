@@ -1,5 +1,7 @@
 package com.nci.project.pobalhub.pobalhubbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
@@ -35,13 +37,16 @@ public class Property {
     @Column(name = "longitude")
     private BigDecimal longitude;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "neighborhood_id")
     private Neighborhood neighborhood;
 
+    @JsonManagedReference
     @OneToOne(mappedBy = "property")
     private SocialAnalytics socialAnalytics;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "property")
     private List<PropertyImage> propertyImages;
 

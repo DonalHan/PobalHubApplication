@@ -1,11 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
-import { houses } from './Houses';
 import FinancialAnalytics from '../FirstPanel/FinancialAnalytics';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZG9uYWxkdWNrOTkiLCJhIjoiY2xqZGNzdXk3MDNvbDNkbnFodG5jdWR5dCJ9.5GPgWSsFONJTHpb5nKWdDA';
 
-function MapApp() {
+function MapApp({ properties }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(-6.266155);
@@ -33,12 +32,12 @@ function MapApp() {
   });
 
   useEffect(() => {
-    if (!map.current || !houses) return; // wait for map to initialize and houses to be available
+    if (!map.current || !properties) return; // wait for map to initialize and houses to be available
 
-    houses.forEach(house => {
+    properties.forEach(property => {
       // create a marker for each house passed in and add it to the map
       const marker = new mapboxgl.Marker()
-        .setLngLat(house.coordinates)
+        .setLngLat([property.longitude, property.latitude])
         .addTo(map.current);
 
       // change cursor to pointer on marker hover
@@ -52,10 +51,10 @@ function MapApp() {
 
       // add an event listener to the marker
       marker.getElement().addEventListener('click', () => {
-        setSelectedHouse(house);
+        setSelectedHouse(property);
       });
     });
-  }, []);
+  }, [properties]);
 
   return (
     <>

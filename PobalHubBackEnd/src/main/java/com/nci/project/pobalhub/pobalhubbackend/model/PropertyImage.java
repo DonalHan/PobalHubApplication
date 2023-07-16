@@ -1,5 +1,6 @@
 package com.nci.project.pobalhub.pobalhubbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +15,7 @@ public class PropertyImage {
     @Column(name ="image_path")
     private String imagePath;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name ="property_id")
     private Property property;

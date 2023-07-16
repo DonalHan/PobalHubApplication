@@ -1,5 +1,6 @@
 package com.nci.project.pobalhub.pobalhubbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,7 +19,7 @@ public class Neighborhood {
 
     @Column(name = "average_price")
     private BigDecimal averagePrice;
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "neighborhood")
     private List<Property> properties;
 

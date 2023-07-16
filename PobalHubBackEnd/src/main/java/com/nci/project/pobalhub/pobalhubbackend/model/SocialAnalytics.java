@@ -1,5 +1,6 @@
 package com.nci.project.pobalhub.pobalhubbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -28,6 +29,7 @@ public class SocialAnalytics {
     @Column(name = "crime")
     private Integer crime;
 
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "property_id")
     @MapsId

@@ -2,12 +2,10 @@ import { Box, Typography } from '@mui/material';
 import { ResponsiveBar } from '@nivo/bar';
 
 const BarChart = ({ currentHousePrice }) => {
-    // Remove the euro sign and comma, then parse the result to a number
-    const housePriceNumber = Number(currentHousePrice.replace(/€|,/g, ''));
+  const housePriceNumber = currentHousePrice;
 
-    const averagePrice = 750000;
-    const difference = housePriceNumber - averagePrice;
-
+  const averagePrice = 750000;
+  const difference = housePriceNumber - averagePrice;
     // Mock data
     const data = [
         {
