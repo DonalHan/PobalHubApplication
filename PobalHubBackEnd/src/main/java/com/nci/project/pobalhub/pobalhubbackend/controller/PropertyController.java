@@ -4,13 +4,10 @@ import com.nci.project.pobalhub.pobalhubbackend.model.Property;
 import com.nci.project.pobalhub.pobalhubbackend.service.PropertyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/properties")
@@ -26,5 +23,11 @@ public class PropertyController {
     public ResponseEntity<List<Property>> getAllProperties() {
         List<Property> properties = propertyService.findAll();
         return new ResponseEntity<>(properties, HttpStatus.OK);
+    }
+
+    @GetMapping("/{propertyId}/appreciation")
+    public ResponseEntity<Map<Integer, Double>> getPropertyAppreciation(@PathVariable Integer propertyId) {
+        Map<Integer, Double> appreciation = propertyService.getPropertyAppreciation(propertyId);
+        return new ResponseEntity<>(appreciation, HttpStatus.OK);
     }
 }

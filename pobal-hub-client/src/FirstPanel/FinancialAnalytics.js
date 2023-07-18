@@ -78,7 +78,7 @@ const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
             </Box>
 
             <Box sx={{bgcolor: 'background.default', width:'90%', height: '40vh', margin:'10px'}}>
-              {houseData && <MyResponsiveLine/>}
+              {houseData && <MyResponsiveLine propertyId={houseData.id}/>}
             </Box>
           </Box>
         )}

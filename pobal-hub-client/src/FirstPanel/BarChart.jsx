@@ -38,7 +38,7 @@ const BarChart = ({ currentHousePrice, neighborhoodId }) => {
             "color": "#f47560"
         },
         {
-            "suburb": "Neighbourhood Average",
+            "suburb": neighborhood.name + " Average",
             "price": averagePrice,
             "color": "#e8c1a0"
         }
