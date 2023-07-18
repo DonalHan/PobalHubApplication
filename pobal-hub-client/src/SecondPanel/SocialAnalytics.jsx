@@ -5,6 +5,7 @@ import IndexCircle from '../FirstPanel/IndexCircle';
 import mockSocialData from './MockSocialData';
 import MyResponsivePie from './PieChart';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import MapboxDistance from '../MapUtil/MapFunctions';
 
 const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
   const handleBackClick = () => {
@@ -103,6 +104,8 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
                     <IndexCircle size='4' showText={false}/>
                 </Box>
             </Box>
+            <MapboxDistance/>
+
         </Box>
 
         <Box sx={{bgcolor: 'background.default', width:'33%', height: '20vh', margin:'10px'}}>
