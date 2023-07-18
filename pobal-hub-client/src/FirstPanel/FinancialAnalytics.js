@@ -9,21 +9,30 @@ import DescriptionPanel from './DescriptionPanel';
 import BarChart from './BarChart';
 import MyResponsiveLine from './LineChart';
 import SocialAnalytics from '../SecondPanel/SocialAnalytics';
+import getDistancesAndScores from '../MapUtil/MapFunctions';
 
 const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
-    // Add state to handle the visibility of the panel
     const images = ["/images/imageOne.jpg", "/images/imageTwo.jpg", "/images/imageThree.jpg", "/images/imageFour.jpg"];
     const [isVisible, setIsVisible] = useState(false);
     const [showSocialAnalytics, setShowSocialAnalytics] = useState(false);
-    const panelRef = useRef(); // Create a ref to the panel
+    const panelRef = useRef(); 
+    const [scoreAndDistance, setScoreAndDistance] = useState(null);
+
 
     useEffect(() => {
-      if (houseData) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
+      async function fetchData() {
+        if (houseData) {
+          console.log(houseData.longitude, houseData.latitude); 
+          const result = await getDistancesAndScores(houseData.longitude, houseData.latitude);
+          setScoreAndDistance(result);
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
       }
+      fetchData();
     }, [houseData]);
+    
 
     useEffect(() => {
       function handleClickOutside(event) {
@@ -43,7 +52,7 @@ const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
     return (
       <div ref={panelRef} className={`panel ${isVisible ? 'panel-visible' : ''}`}>
         {showSocialAnalytics ? (
-          <SocialAnalytics socialData={houseData && houseData.socialData} setShowSocialAnalytics={setShowSocialAnalytics} />
+          <SocialAnalytics socialData={houseData && scoreAndDistance ? {houseData: houseData, scoreAndDistance: scoreAndDistance} : null} setShowSocialAnalytics={setShowSocialAnalytics} />
         ) : (
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <Box sx={{bgcolor: 'background.default', width:'90%', height: '60%', margin:'10px', display: 'flex', justifyContent: 'space-evenly'}}>
@@ -56,7 +65,7 @@ const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
                 </Box>              
               </Box>
               <Box sx={{m: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <IndexCircle/>
+                <IndexCircle progress={scoreAndDistance ? scoreAndDistance.scores.total / 100 : 0} />
                 <Typography variant="h3" 
                   sx={{ mt: 3, color: 'secondary.main', fontSize: '1.5vw', textDecoration: 'underline', cursor: 'pointer'}}
                   onClick={() => setShowSocialAnalytics(true)}

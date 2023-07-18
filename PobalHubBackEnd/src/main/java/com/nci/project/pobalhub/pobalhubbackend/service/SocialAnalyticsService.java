@@ -17,29 +17,10 @@ public class SocialAnalyticsService {
     }
 
     public SocialAnalytics getSocialAnalyticsForProperty(Integer propertyId) {
-        return socialAnalyticsRepository.findById(propertyId)
-                .orElseGet(() -> calculateAndStoreSocialAnalytics(propertyId));
+        return socialAnalyticsRepository.findById(propertyId).orElse(null);
     }
 
-    private SocialAnalytics calculateAndStoreSocialAnalytics(Integer propertyId) {
-        // We'll need to fetch the property to get its coordinates
-        Property property = getPropertyById(propertyId); // You'll need to implement this
-
-        // Make the Mapbox API calls to calculate the social analytics here
-
-        SocialAnalytics analytics = new SocialAnalytics();
-
-        // Set the values on the analytics object
-        analytics.setId(propertyId);
-        analytics.setProperty(property);
-        // Set the calculated values
-        analytics.setCityCenter(cityCenter);
-        analytics.setTransport(transport);
-        analytics.setParksBeachesGreenways(parksBeachesGreenways);
-
-        // Save the analytics to the database
-        socialAnalyticsRepository.save(analytics);
-
-        return analytics;
+    public SocialAnalytics storeSocialAnalyticsForProperty(SocialAnalytics analytics) {
+        return socialAnalyticsRepository.save(analytics);
     }
 }

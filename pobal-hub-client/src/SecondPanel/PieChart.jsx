@@ -3,14 +3,14 @@ import { Box, Typography } from '@mui/material';
 
 const MyResponsivePie = ({ socialData }) => {
   const data = [
-    { id: 'Parks', value: socialData.proximityToParks },
-    { id: 'Amenities', value: socialData.proximityToAmenities },
-    { id: 'City Center', value: socialData.proximityToCityCenter },
-    { id: 'Transport', value: socialData.proximityToTransport },
-    { id: 'Crime Index', value: socialData.crimeRate },
+    { id: 'Parks', value: socialData.park },
+    { id: 'Amenities', value: socialData.shop },
+    { id: 'City Center', value: socialData.city },
+    { id: 'Transport', value: socialData.bus },
+    { id: 'Crime Index', value: socialData.crime},
   ];
 
-  const totalScore = (socialData.proximityToParks + socialData.proximityToAmenities + socialData.proximityToCityCenter + socialData.proximityToTransport + socialData.crimeRate);
+  const totalScore = socialData.total;
   const finalScore = 100 - totalScore;
   const startAngle = (finalScore / 100) * 360;
 
