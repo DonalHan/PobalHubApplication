@@ -19,6 +19,10 @@ public class Neighborhood {
 
     @Column(name = "average_price")
     private BigDecimal averagePrice;
+
+    @Column(name = "crime")
+    private Integer crime;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "neighborhood")
     private List<Property> properties;

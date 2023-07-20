@@ -38,7 +38,7 @@ const getDistancesAndScores = async (longitude, latitude) => {
   console.log('Entered getDistancesAndScores', longitude, latitude);
   const shopDistance = await getDistanceToPlace(longitude, latitude, 'grocery');
   const parkDistance = await getDistanceToPlace(longitude, latitude, 'park');
-  const cityDistance = await getDistanceToPlace(longitude, latitude, 'city');
+  const cityDistance = await getDistanceToPlace(longitude, latitude, 'dublin');
   const busDistance = await getDistanceToPlace(longitude, latitude, 'bus');
 
   const shopScore = calculateScore(shopDistance, [1, 2, 3, 4, 5]);
