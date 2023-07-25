@@ -1,13 +1,13 @@
 import { ResponsivePie } from '@nivo/pie';
 import { Box, Typography } from '@mui/material';
 
-const MyResponsivePie = ({ socialData }) => {
+const MyResponsivePie = ({ socialData, crimeScore }) => {
   const data = [
     { id: 'Parks', value: socialData.park },
     { id: 'Amenities', value: socialData.shop },
     { id: 'City Center', value: socialData.city },
     { id: 'Transport', value: socialData.bus },
-    { id: 'Crime Index', value: socialData.crime},
+    { id: 'Crime Index', value: crimeScore},
   ];
 
   const totalScore = socialData.total;

@@ -29,7 +29,7 @@ const BarChart = ({ currentHousePrice, neighborhoodId }) => {
 
   const housePriceNumber = currentHousePrice;
   const averagePrice = neighborhood.averagePrice;
-  const difference = housePriceNumber - averagePrice;
+  const difference = parseFloat((housePriceNumber - averagePrice).toFixed(2));
     
   const data = [
         {
@@ -45,9 +45,11 @@ const BarChart = ({ currentHousePrice, neighborhoodId }) => {
     ];
     
     return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      <Box sx={{bgcolor: 'background.default', width:'90%', height: '50vh', margin:'10px'}}>
         <Box sx={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
               <Box sx ={{display: 'flex', justifyContent: 'space-between'}}>
-                <h1>Neighbourhood Price Comparison</h1>
+                <Typography sx={{ fontSize: '2vw', ml: 4, mt: 0 }}>Neighbourhood Price Comparison</Typography>
                 <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', ml: 20, pt:1}}>
                     <h2>This property is currently:</h2>
                     <Typography variant="h1" sx={{fontSize: '2.5vw', textDecoration: 'underline'}}>€ {Math.abs(difference)}</Typography> 
@@ -117,6 +119,8 @@ const BarChart = ({ currentHousePrice, neighborhoodId }) => {
             />
 
         </Box>
+      </Box>
+    </Box>
     );
 }
 

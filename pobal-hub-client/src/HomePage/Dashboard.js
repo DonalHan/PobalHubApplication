@@ -13,7 +13,6 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         const response = await axios.get('/api/properties');
-        console.log(response.data);
         setProperties(response.data);
       } catch (error) {
         console.error('Error fetching properties', error);
@@ -31,10 +30,11 @@ function Dashboard() {
       </Box>
       <Box sx={{ display: 'flex', flex: 3, borderRadius: 2, alignItems: 'center', overflow: 'hidden', m: 2, marginTop: '6%', height: '80vh' }}>
         <MapApp properties={properties}/>
-        <HouseList />
+        <HouseList houses={properties}/> 
       </Box>
     </Box>
   );
+
 }
 
 export default Dashboard;

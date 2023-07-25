@@ -6,6 +6,7 @@ const DescriptionPanel = ({ description, coordinates }) => {
     const [isFullTextVisible, setIsFullTextVisible] = useState(false);
 
     return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         <Box sx={{ 
             bgcolor: 'background.default', 
             width: '90%', 
@@ -40,6 +41,7 @@ const DescriptionPanel = ({ description, coordinates }) => {
             
             
         </Box>
+    </Box>
     );
 }
 

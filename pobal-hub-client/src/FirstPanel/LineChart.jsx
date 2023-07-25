@@ -22,8 +22,12 @@ const MyResponsiveLine = ({ propertyId }) => {
     }, [propertyId]);
 
     return (
-        <Box sx={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            <Typography variant="h1" sx={{fontSize: '2vw', marginRight: 65, marginTop: 2}}>Price Appreciation</Typography> 
+ <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+
+    <Box sx={{bgcolor: 'background.default', width:'90%', height: '40vh', margin:'10px'}}>
+
+        <Box sx={{width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'left'}}>
+            <Typography variant="h1" sx={{fontSize: '2vw', marginTop: 2,  ml: 4}}>Price Appreciation</Typography> 
             <ResponsiveLine
                 data={data}
                 margin={{ top: 50, right: 70, bottom: 100, left: 100 }}
@@ -31,7 +35,7 @@ const MyResponsiveLine = ({ propertyId }) => {
                 yScale={{
                     type: 'linear',
                     min: 100000,
-                    max: 1000000,
+                    max: 2000000,
                     stacked: true,
                     reverse: false
                 }}
@@ -45,7 +49,7 @@ const MyResponsiveLine = ({ propertyId }) => {
                         <BasicTooltip
                             id={data.serieId}
                             value={`Year: ${data.x}, Price: ${data.yFormatted}`}
-                            color={"black"}
+                            color={"blue"}
                         />
                     )
                 }}
@@ -93,6 +97,9 @@ const MyResponsiveLine = ({ propertyId }) => {
                 useMesh={true}
             />
         </Box>
+    </Box>
+</Box>
+
     );
 };
 

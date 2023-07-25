@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Typography, IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IndexCircle from '../FirstPanel/IndexCircle';
 import mockSocialData from './MockSocialData';
 import MyResponsivePie from './PieChart';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import axios from 'axios';
+
 
 const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
-  
+  const [neighborhood, setNeighborhood] = useState(null);
+  const [crimeScore, setCrimeScore] = useState(null);
+
   let busScore = socialData.scoreAndDistance.scores.bus;
   let parkScore = socialData.scoreAndDistance.scores.park;
   let cityScore = socialData.scoreAndDistance.scores.city;
   let shopScore = socialData.scoreAndDistance.scores.shop;
-  let crimeScore = socialData.scoreAndDistance.scores.crime;
 
   let busDist = socialData.scoreAndDistance.distances.bus;
   let parkDist = socialData.scoreAndDistance.distances.park;
@@ -23,6 +26,38 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
   const handleBackClick = () => {
     setShowSocialAnalytics(false);
   };
+
+  useEffect (() =>{
+    const fetchNeighborhoodCrime = async () =>{
+      try{
+        const response = await axios.get(`/api/neighborhood/${socialData.id}`);
+        setNeighborhood(response.data);
+      }
+      catch(error) {
+        console.error(`Failed to fetch neighborhood data: ${error}`)
+      }
+    };
+    fetchNeighborhoodCrime();
+  }, [socialData.id])
+
+  useEffect(() => {
+    if (neighborhood) {
+      const calculateCrimeScore = (crimeRate) => {
+        if (crimeRate >= 80) {
+          return 20;
+        } else if (crimeRate >= 60) {
+          return 16;
+        } else if (crimeRate >= 40) {
+          return 12;
+        } else if (crimeRate >= 20) {
+          return 8;
+        } else {
+          return 4;
+        }
+      };
+      setCrimeScore(calculateCrimeScore(neighborhood.crime));
+    }
+  }, [neighborhood]);
   
   const getAdjective = (score) => {
     if (score <= 4) {
@@ -38,6 +73,21 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
     }
   };
 
+  const getCrimeAdjective = (crimeScore) => {
+    if (crimeScore >= 16) {
+      return "very safe";
+    } else if (crimeScore >= 12) {
+      return "safe";
+    } else if (crimeScore >= 8) {
+      return "moderate";
+    } else if (crimeScore >= 4) {
+      return "unsafe";
+    } else {
+      return "very unsafe";
+    }
+  };
+  
+
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
       <Box sx={{display: 'flex', justifyContent: 'space-between', width: '100%', padding: '10px'}}>
@@ -49,7 +99,6 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
 
 
       <Box sx={{bgcolor: 'background.default', width:'90%', height: '25vw', p: 2}}>
-        
         <Box sx={{pt: 1, pl: 3, mb: 2}}>
           <Typography variant="h3">Summary</Typography>
           <Typography variant="h4" sx={{color: 'secondary.main'}}>{socialData.houseData.address} has the following neighbourhood rating</Typography>
@@ -111,13 +160,13 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
                       xl: '1vw', // for screen width: >1920px
                     },
                   }}/>
-                <Typography variant="h5" sx={{ p: 1, fontSize: '1.2vw'}}>
-                     Has {getAdjective(crimeScore)} crime rate index
-                </Typography>
+                  {crimeScore && <Typography variant="h5" sx={{ p: 1, fontSize: '1.2vw'}}>
+                      Has {getAdjective(crimeScore)} crime rate index
+                  </Typography>}
               </Box>
             </Box>
             <Box sx={{width:'50%', height: '35vh', padding:'10px'}}>
-               <MyResponsivePie socialData={scores} />
+               <MyResponsivePie socialData={scores} crimeScore={crimeScore}/>
             </Box>
 
         </Box>
@@ -180,9 +229,12 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
             <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                 <Typography variant="h5" sx={{m: 2, fontSize: '1.2vw', color: 'secondary.main'}}>Crime Rate Index{socialData && socialData.proximityToParks}</Typography>
                 <Box sx={{p: 2}}>
-                    <IndexCircle progress={crimeScore/20} size='4' showText={false}/>
+                    {crimeScore && <IndexCircle progress={crimeScore/20} size='4' showText={false}/>}
                 </Box>
             </Box>
+            <Typography variant="h5" sx={{m: 2, fontSize: '1.2vw'}}>
+                This {neighborhood.name} is a {crimeScore && <Box component="span" sx={{ color: "#6870FA" }}>{getCrimeAdjective(crimeScore)}</Box>} from transport
+            </Typography>
                     
         </Box>
       </Box>
