@@ -10,28 +10,39 @@ import BarChart from './BarChart';
 import MyResponsiveLine from './LineChart';
 import SocialAnalytics from '../SecondPanel/SocialAnalytics';
 import getDistancesAndScores from '../MapUtil/MapFunctions';
+import axios from 'axios';
 
 const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
-    const images = ["/images/imageOne.jpg", "/images/imageTwo.jpg", "/images/imageThree.jpg", "/images/imageFour.jpg"];
     const [isVisible, setIsVisible] = useState(false);
     const [showSocialAnalytics, setShowSocialAnalytics] = useState(false);
     const panelRef = useRef(); 
     const [scoreAndDistance, setScoreAndDistance] = useState(null);
+    const [images, setImages] = useState([]);
 
 
     useEffect(() => {
       async function fetchData() {
-        if (houseData) {
-          console.log(houseData.longitude, houseData.latitude); 
-          const result = await getDistancesAndScores(houseData.longitude, houseData.latitude);
-          setScoreAndDistance(result);
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
-        }
+          if (houseData) {
+              console.log(houseData.longitude, houseData.latitude); 
+              const result = await getDistancesAndScores(houseData.longitude, houseData.latitude);
+              setScoreAndDistance(result);
+              
+              try {
+                  const response = await axios.get(`/api/property-images/property/${houseData.id}`);
+                  const imagePaths = response.data.map(image => image.imagePath);
+                  setImages(imagePaths);
+              } catch (error) {
+                  console.error("Failed to fetch property images: ", error);
+              }
+  
+              setIsVisible(true);
+          } else {
+              setIsVisible(false);
+          }
       }
       fetchData();
-    }, [houseData]);
+  }, [houseData]);
+  
     
 
     useEffect(() => {
@@ -48,6 +59,7 @@ const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
         document.removeEventListener("mousedown", handleClickOutside);
       };
     }, [setSelectedHouse]); // include setSelectedHouse in the dependency array
+
 
     return (
       <div ref={panelRef} className={`panel ${isVisible ? 'panel-visible' : ''}`}>
