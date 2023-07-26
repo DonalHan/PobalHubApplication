@@ -1,12 +1,14 @@
 import { ResponsiveLine } from '@nivo/line';
 import { Box, Typography } from '@mui/material';
-import { BasicTooltip } from '@nivo/tooltip';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const MyResponsiveLine = ({ propertyId }) => {
     const [data, setData] = useState([]);
+    const [maximumValue, setMaximumValue] = useState([]);
+    const [minimumValue, setMinimumValue] = useState([]);
 
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -14,13 +16,17 @@ const MyResponsiveLine = ({ propertyId }) => {
                 const fetchedData = Object.entries(response.data).map(([year, value]) => ({ x: year, y: value }));
 
                 setData([{ id: 'Property Value', data: fetchedData }]);
+                setMaximumValue(fetchedData[fetchedData.length - 1].y);
+                setMinimumValue(fetchedData[0].y);
+
             } catch (error) {
                 console.error(`Failed to fetch data: ${error}`);
             }
         };
         fetchData();
+       
     }, [propertyId]);
-
+    console.log("Here is the data", data);
     return (
  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
 
@@ -34,8 +40,8 @@ const MyResponsiveLine = ({ propertyId }) => {
                 xScale={{ type: 'point' }}
                 yScale={{
                     type: 'linear',
-                    min: 100000,
-                    max: 2000000,
+                    min: minimumValue,
+                    max: maximumValue,
                     stacked: true,
                     reverse: false
                 }}
@@ -43,17 +49,14 @@ const MyResponsiveLine = ({ propertyId }) => {
                 curve="cardinal"
                 axisTop={null}
                 axisRight={null}
-                tooltip={({ point }) => {
-                    const { data } = point
-                    return (
-                        <BasicTooltip
-                            id={data.serieId}
-                            value={`Year: ${data.x}, Price: ${data.yFormatted}`}
-                            color={"blue"}
-                        />
-                    )
-                }}
+                enablePointTooltip={true}
                 theme={{
+                    tooltip: {
+                        container: {
+                          background: 'white',
+                          color: 'black',
+                        },
+                    },
                     axis: {
                         ticks: {
                             text: {

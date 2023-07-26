@@ -58,4 +58,12 @@ public class Neighborhood {
     public void setProperties(List<Property> properties) {
         this.properties = properties;
     }
+
+    public Integer getCrime() {
+        return crime;
+    }
+
+    public void setCrime(Integer crime) {
+        this.crime = crime;
+    }
 }

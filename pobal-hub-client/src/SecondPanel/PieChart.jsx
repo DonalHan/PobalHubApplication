@@ -33,6 +33,14 @@ const MyResponsivePie = ({ socialData, crimeScore }) => {
         arcLinkLabelsThickness={3}
         arcLinkLabelsColor="#4CCEAC"
         arcLabelsTextColor="#4CCEAC"
+        theme={{
+          tooltip: {
+            container: {
+              background: 'white',
+              color: 'black',
+            },
+          },
+        }}
         defs={[
           {
             id: 'dots',
