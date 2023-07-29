@@ -5,7 +5,6 @@ import MyResponsiveLine from './LineChart';
 import SocialAnalytics from '../SecondPanel/SocialAnalytics';
 import getDistancesAndScores from '../MapUtil/MapFunctions';
 import PropertyInformation from './PropertyInformation';
-import axios from 'axios';
 
 const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
     const [isVisible, setIsVisible] = useState(false);
@@ -13,7 +12,7 @@ const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
     const panelRef = useRef(); 
     const [scoreAndDistance, setScoreAndDistance] = useState(null);
     const [images, setImages] = useState([]);
-
+  
 
     useEffect(() => {
       async function fetchData() {
@@ -21,15 +20,6 @@ const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
               console.log(houseData.longitude, houseData.latitude); 
               const result = await getDistancesAndScores(houseData.longitude, houseData.latitude);
               setScoreAndDistance(result);
-              
-              try {
-                  const response = await axios.get(`/api/property-images/property/${houseData.id}`);
-                  const imagePaths = response.data.map(image => image.imagePath);
-                  setImages(imagePaths);
-              } catch (error) {
-                  console.error("Failed to fetch property images: ", error);
-              }
-  
               setIsVisible(true);
           } else {
               setIsVisible(false);
@@ -37,8 +27,19 @@ const FinancialAnalytics = ({ houseData, setSelectedHouse }) => {
       }
       fetchData();
   }, [houseData]);
-  
-    
+
+        useEffect(() => {
+          // console.log("property images: ", houseData.propertyImages);
+          console.log("property", houseData);
+
+    }, [houseData]);
+
+    useEffect(() => {
+      if (houseData && houseData.propertyImages) {
+        const imagePaths = houseData.propertyImages.map(img => img.imagePath);
+        setImages(imagePaths);
+      }
+    }, [houseData]);
 
     useEffect(() => {
       function handleClickOutside(event) {

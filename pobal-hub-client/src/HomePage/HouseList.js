@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import HouseItem from './HouseItem';
 import FinancialAnalytics from '../FirstPanel/FinancialAnalytics';
 
-function HouseList({ houses: initialHouses }) { 
-
-  const [houses, setHouses] = useState([]);
+function HouseList({ houses, setSearchClicked }) { 
   const [selectedHouse, setSelectedHouse] = useState(null);
-
-  useEffect(() => {
-    setHouses(initialHouses);
-  }, [initialHouses]);
 
   const handleHouseItemClick = (house) => {
     setSelectedHouse(house);

@@ -7,6 +7,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZG9uYWxkdWNrOTkiLCJhIjoiY2xqZGNzdXk3MDNvbDNkb
 function MapApp({ properties }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
+  const markers = useRef([]); // New state to store the markers
   const [lng, setLng] = useState(-6.266155);
   const [lat, setLat] = useState(53.350140);
   const [zoom, setZoom] = useState(12);
@@ -32,15 +33,20 @@ function MapApp({ properties }) {
   });
 
   useEffect(() => {
-    if (!map.current || !properties) return; // wait for map to initialize and houses to be available
+    if (!map.current || !properties) return;
+
+    // Remove existing markers from the map
+    markers.current.forEach(marker => marker.remove());
+    markers.current = []; // Reset the markers array
 
     properties.forEach(property => {
-      // create a marker for each house passed in and add it to the map
       const marker = new mapboxgl.Marker()
         .setLngLat([property.longitude, property.latitude])
         .addTo(map.current);
 
-      // change cursor to pointer on marker hover
+      // Add the marker to our array of markers
+      markers.current.push(marker);
+
       marker.getElement().addEventListener('mouseover', () => {
         marker.getElement().style.cursor = 'pointer';
       });
@@ -49,13 +55,12 @@ function MapApp({ properties }) {
         marker.getElement().style.cursor = '';
       });
 
-      // add an event listener to the marker
       marker.getElement().addEventListener('click', () => {
         setSelectedHouse(property);
       });
     });
   }, [properties]);
-
+ 
   return (
     <>
       <FinancialAnalytics setSelectedHouse={setSelectedHouse} houseData={selectedHouse} />

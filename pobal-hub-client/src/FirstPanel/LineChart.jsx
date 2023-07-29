@@ -26,7 +26,6 @@ const MyResponsiveLine = ({ propertyId }) => {
         fetchData();
        
     }, [propertyId]);
-    console.log("Here is the data", data);
     return (
  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
 
