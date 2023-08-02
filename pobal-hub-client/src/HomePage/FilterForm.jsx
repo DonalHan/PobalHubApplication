@@ -1,35 +1,37 @@
+// A file that is used for creating a filter form element
 import React, { useState } from 'react';
 import { Box, Typography, FormControl, InputLabel, MenuItem, Select, IconButton, InputBase, Button } from '@mui/material';
 import Slider from '@mui/material/Slider';
 import SearchIcon from '@mui/icons-material/Search';
 
-function FilterForm({ search, setSearch, price, setPrice, propertyType, setPropertyType, setSearchClicked }) {
+function FilterForm({ search, setSearch, price, setPrice, propertyType, setPropertyType, setSearchClicked }) { 
   
-  const [sliderValue, setSliderValue] = useState(price);  // Add this line for the new state
+  const [sliderValue, setSliderValue] = useState(price);  //a state to hold the current slider value passed down as prop
 
-  const handleSearchChange = (event) => {
+
+  //The states of all of the below functions are set in the parent Dashboard component, each method passes it up the tree
+  const handleSearchChange = (event) => { //listens for any changes within the search field
     setSearch(event.target.value);
   };
 
-  const handlePriceChange = (event, newValue) => {
-    setSliderValue(newValue.map(v => v * 1000)); // Update the sliderValue state instead of price
+  const handlePriceChange = (event, newValue) => { //listens for any changes within the prive slider
+    setSliderValue(newValue.map(v => v * 1000)); 
   };
 
-  const handlePropertyTypeChange = (event) => {
+  const handlePropertyTypeChange = (event) => { //listens for any changes within the type input
     setPropertyType(event.target.value);
   };
 
-  const handleSearchClick = () => {
-    console.log("Search button clicked");
-    setPrice(sliderValue);  // Update the price state from the sliderValue state
+  const handleSearchClick = () => { //listens for a click on the search filter button
+    setPrice(sliderValue); //sets the price criteria asthe value put in by the user
     setSearchClicked(true);
   };
 
-  const handleResetClick = () => {
+  const handleResetClick = () => { //resets all the states
     setSearch('');
-    setSliderValue([100000, 1000000]); // Reset sliderValue state instead of price state
+    setSliderValue([100000, 1000000]); 
     setPropertyType('');
-    setSearchClicked(true); // trigger a new search with the empty criteria
+    setSearchClicked(true); 
   };
   
   

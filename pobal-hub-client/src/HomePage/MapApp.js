@@ -1,3 +1,5 @@
+//This component is the primary functionality for generating the MapBox App, most of which is boiler plate from the following documentation:
+//https://docs.mapbox.com/help/tutorials/use-mapbox-gl-js-with-react/
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import FinancialAnalytics from '../FirstPanel/FinancialAnalytics';
@@ -7,14 +9,14 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZG9uYWxkdWNrOTkiLCJhIjoiY2xqZGNzdXk3MDNvbDNkb
 function MapApp({ properties }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const markers = useRef([]); // New state to store the markers
+  const markers = useRef([]); //state to store the markers
   const [lng, setLng] = useState(-6.266155);
   const [lat, setLat] = useState(53.350140);
   const [zoom, setZoom] = useState(12);
-  const [selectedHouse, setSelectedHouse] = useState(null);
+  const [selectedHouse, setSelectedHouse] = useState(null); // a state to keep track of what property the user has clicked on
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
+    if (map.current) return; 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/donalduck99/clje5u1ao004c01qsc5rieywy',
@@ -35,31 +37,34 @@ function MapApp({ properties }) {
   useEffect(() => {
     if (!map.current || !properties) return;
 
-    // Remove existing markers from the map
+    // Remove the current markers from the map
     markers.current.forEach(marker => marker.remove());
     markers.current = []; // Reset the markers array
 
-    properties.forEach(property => {
-      const marker = new mapboxgl.Marker()
+    properties.forEach(property => { // for each property create a marker
+      const marker = new mapboxgl.Marker() //mapbox's markers feature 
         .setLngLat([property.longitude, property.latitude])
-        .addTo(map.current);
+        .addTo(map.current); // add to map
 
-      // Add the marker to our array of markers
+      // Add the current marker to our state/list of markers
       markers.current.push(marker);
 
+      //add an event listener for the current marker which changes the cursor style when over a marker
       marker.getElement().addEventListener('mouseover', () => {
         marker.getElement().style.cursor = 'pointer';
       });
 
+      //add an event listener for the current marker which changes the cursor style when not on a marker
       marker.getElement().addEventListener('mouseout', () => {
         marker.getElement().style.cursor = '';
       });
 
-      marker.getElement().addEventListener('click', () => {
+      //add an event listener for the current marker which, when click, saves the current property in a state, to be passed down the tree later
+      marker.getElement().addEventListener('click', () => { 
         setSelectedHouse(property);
       });
     });
-  }, [properties]);
+  }, [properties]); //dependency is when the properties list changes (such as when it is filtered)
  
   return (
     <>

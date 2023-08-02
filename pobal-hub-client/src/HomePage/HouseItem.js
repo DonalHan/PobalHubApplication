@@ -1,3 +1,4 @@
+//A house component that each house up the component tree is passed into
 import { Box } from '@mui/material';
 import HouseIcon from '@mui/icons-material/House';
 

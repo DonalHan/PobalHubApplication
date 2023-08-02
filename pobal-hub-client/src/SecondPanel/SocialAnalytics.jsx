@@ -11,17 +11,19 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
   const [neighborhood, setNeighborhood] = useState(null);
   const [crimeScore, setCrimeScore] = useState(null);
 
+  //Variables to store the score calculations
   let busScore = socialData.scoreAndDistance.scores.bus;
   let parkScore = socialData.scoreAndDistance.scores.park;
   let cityScore = socialData.scoreAndDistance.scores.city;
   let shopScore = socialData.scoreAndDistance.scores.shop;
-
+  
+  //Variables to store the score calculations
   let busDist = socialData.scoreAndDistance.distances.bus;
   let parkDist = socialData.scoreAndDistance.distances.park;
   let cityDist = socialData.scoreAndDistance.distances.city;
   let shopDist = socialData.scoreAndDistance.distances.shop;
   let scores = socialData.scoreAndDistance.scores;
-  const [loading, setLoading] = useState(true); // Initialize loading state
+  const [loading, setLoading] = useState(true); // Initialize loading state while the app proccesses social analytics
 
 
   const handleBackClick = () => {
@@ -31,15 +33,14 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
   useEffect (() =>{
     const fetchNeighborhoodCrime = async () =>{
       try{
-        setLoading(true); // Start loading
+        setLoading(true); 
         const response = await axios.get(`/api/neighborhood/${socialData.houseData.neighborhoodId}`);
-        console.log("Neighbouthood data", response.data);
         setNeighborhood(response.data);
       }
       catch(error) {
         console.error(`Failed to fetch neighborhood data: ${error}`)
       } finally {
-        setLoading(false); // End loading regardless of success or error
+        setLoading(false); 
       }
     };
     fetchNeighborhoodCrime();
