@@ -1,18 +1,17 @@
 import { distance, point } from '@turf/turf';
 
-// Your Mapbox access token
 const mapboxAccessToken = 'pk.eyJ1IjoiZG9uYWxkdWNrOTkiLCJhIjoiY2xqZGNzdXk3MDNvbDNkbnFodG5jdWR5dCJ9.5GPgWSsFONJTHpb5nKWdDA';
 
 const getDistanceToPlace = async (longitude, latitude, place) => {
-  const userLocation = point([longitude, latitude]);
+  const houseLocation = point([longitude, latitude]);
 
   return fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json?proximity=${longitude},${latitude}&access_token=${mapboxAccessToken}`)
     .then(response => response.json())
     .then(data => {
-      // Get coordinates of first place in the response and calculate the distance
+
       if (data.features && data.features.length > 0) {
         const placeLocation = point(data.features[0].geometry.coordinates);
-        const distanceToPlace = distance(userLocation, placeLocation);
+        const distanceToPlace = distance(houseLocation, placeLocation);
         return parseFloat(distanceToPlace.toFixed(1));
       } else {
         console.log(`No ${place} found`);
@@ -46,8 +45,7 @@ const getDistancesAndScores = async (longitude, latitude) => {
   const cityScore = calculateScore(cityDistance, [3, 5, 10, 15, 20]);
   const busScore = calculateScore(busDistance, [0.5, 1, 2, 3, 4]);
 
-  // Hard-coded crime score
-  const crimeScore = 10;
+
 
   return {
     distances: {
@@ -57,12 +55,11 @@ const getDistancesAndScores = async (longitude, latitude) => {
       bus: busDistance,
     },
     scores: {
-      total: shopScore + parkScore + cityScore + busScore + crimeScore,
+      total: shopScore + parkScore + cityScore + busScore,
       shop: shopScore,
       park: parkScore,
       city: cityScore,
       bus: busScore,
-      crime: crimeScore,
     },
   };
 };

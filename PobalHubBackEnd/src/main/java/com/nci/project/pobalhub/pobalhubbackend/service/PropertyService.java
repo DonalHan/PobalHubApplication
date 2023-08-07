@@ -43,17 +43,17 @@ public class PropertyService {
         /* Storing the results (year and price) in a map */
         Map<Integer, Double>  propertyAppreciation = new HashMap<>();
         double averageGrowthRate = 0.0;
-        for (int i = neighborhoodPriceAppreciation.size() - 1; i > 0; i--) {
+        for (int i = neighborhoodPriceAppreciation.size() - 1; i > 0; i--) { /*Reverse for loop*/
             /* Get the price in the current year */
-            double currentYearPrice = neighborhoodPriceAppreciation.get(i).getAveragePrice().doubleValue();
+            double currentYearPrice = neighborhoodPriceAppreciation.get(i).getAveragePrice().doubleValue(); //.doubleValue converts BigDecimal into double
             /* Get the price in the previous year */
             double previousYearPrice = neighborhoodPriceAppreciation.get(i - 1).getAveragePrice().doubleValue();
             /* Calculate the price difference between the current year and the previous year */
             double priceDifference = currentYearPrice - previousYearPrice;
             /* Calculate the growth rate as the price difference divided by the price in the previous year */
             double growthRate = priceDifference / previousYearPrice;
-            averageGrowthRate += growthRate;
-            /* Reverse engineer the appreciation of the current property price */
+            averageGrowthRate = averageGrowthRate + growthRate;
+            /* Reverse engineer the appreciation of the current property pricez */
             currentPrice = currentPrice / (1 + growthRate);
             /* Store the calculated property price in the map with its corresponding year */
             propertyAppreciation.put(neighborhoodPriceAppreciation.get(i - 1).getYear(), currentPrice);
