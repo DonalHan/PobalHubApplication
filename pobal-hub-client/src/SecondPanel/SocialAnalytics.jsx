@@ -64,6 +64,20 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
       setCrimeScore(calculateCrimeScore(neighborhood.crime));
     }
   }, [neighborhood]);
+
+  const getCrimeAdjective = (crimeScore) => {
+    if (crimeScore >= 16) {
+      return "a very safe";
+    } else if (crimeScore >= 12) {
+      return "a safe";
+    } else if (crimeScore >= 8) {
+      return "a moderate";
+    } else if (crimeScore >= 4) {
+      return "an unsafe";
+    } else {
+      return "a very unsafe";
+    }
+  };
   
   const getAdjective = (score) => {
     if (score <= 4) {
@@ -79,19 +93,7 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
     }
   };
 
-  const getCrimeAdjective = (crimeScore) => {
-    if (crimeScore >= 16) {
-      return "a very safe";
-    } else if (crimeScore >= 12) {
-      return "a safe";
-    } else if (crimeScore >= 8) {
-      return "a moderate";
-    } else if (crimeScore >= 4) {
-      return "an unsafe";
-    } else {
-      return "a very unsafe";
-    }
-  };
+  
   if (loading) {
     return <div>Loading...</div>; // Or some loading spinner component
   }

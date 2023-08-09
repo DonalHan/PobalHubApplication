@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
+/*Mapping Property for hibernate ORM to the database*/
 
 @Entity
 @Table(name = "property")
@@ -37,7 +38,7 @@ public class Property {
     @Column(name = "longitude")
     private BigDecimal longitude;
 
-    @JsonBackReference
+    @JsonBackReference //This is used to prevent infinite mapping with respect to foreign keys
     @ManyToOne
     @JoinColumn(name = "neighborhood_id")
     private Neighborhood neighborhood;

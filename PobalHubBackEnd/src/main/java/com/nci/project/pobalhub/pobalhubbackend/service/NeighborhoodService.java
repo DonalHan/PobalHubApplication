@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-
+/*Main Service logic for the neighborhood functionality*/
 @Service
 public class NeighborhoodService {
 
@@ -25,7 +25,7 @@ public class NeighborhoodService {
         return neighborhoodRepository.findAll();
     }
 
-    public Neighborhood findById(Integer id)
+    public Neighborhood findById(Integer id)//Finds a Neighborhood By ID from the DB
     {
         return neighborhoodRepository.findById(id).orElse(null);
     }
@@ -36,7 +36,7 @@ public class NeighborhoodService {
         return neighborhood != null ? neighborhood.getAveragePrice() :null;
     }
 
-    public List<NeighborhoodPrice> getPriceHistory(int neighborhoodId) {
+    public List<NeighborhoodPrice> getPriceHistory(int neighborhoodId) { //Retrieves all of the price history for a neighborhood form the DB, returns a list
         return neighborhoodPriceRepository.findByNeighborhood_Id(neighborhoodId);
     }
 

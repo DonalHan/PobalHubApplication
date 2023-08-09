@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
-
+/*Mapping Neighborhood Price for hibernate ORM to the database*/
 @Entity
 @Table(name = "neighborhood_prices")
 public class NeighborhoodPrice {

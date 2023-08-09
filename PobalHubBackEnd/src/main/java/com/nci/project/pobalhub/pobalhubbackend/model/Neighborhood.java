@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
-
+/*Mapping Neighborhood for hibernate ORM to the database*/
 @Entity
 @Table(name = "neighborhood")
 public class Neighborhood {

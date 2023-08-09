@@ -2,6 +2,7 @@ package com.nci.project.pobalhub.pobalhubbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+/*Mapping Social Analytics for hibernate ORM to the database*/
 
 @Entity
 @Table(name = "social_analytics")

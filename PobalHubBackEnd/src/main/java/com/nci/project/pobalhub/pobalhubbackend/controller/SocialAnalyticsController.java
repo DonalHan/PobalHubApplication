@@ -4,7 +4,7 @@ import com.nci.project.pobalhub.pobalhubbackend.service.SocialAnalyticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+/*This is the main controller through which the client interacts with the SocialAnalytics logic and DB*/
 @RestController
 @RequestMapping("/social-analytics")
 public class SocialAnalyticsController {

@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+/*This is the main controller through which the client interacts with the PropertyImage logic and DB*/
 @RestController
 @RequestMapping("/api/property-images")
 public class PropertyImageController {

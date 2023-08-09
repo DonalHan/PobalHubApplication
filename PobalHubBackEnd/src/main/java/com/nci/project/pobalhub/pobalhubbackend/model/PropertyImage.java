@@ -2,6 +2,7 @@ package com.nci.project.pobalhub.pobalhubbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+/*Mapping Property Image for hibernate ORM to the database*/
 
 @Entity
 @Table(name = "property_image")

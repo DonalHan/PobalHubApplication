@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-
+/*This is the main controller through which the client interacts with the Property logic and DB*/
 @RestController
 @RequestMapping("/api/properties")
 public class PropertyController {

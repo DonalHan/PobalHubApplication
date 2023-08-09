@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+/*Main Service logic for the Property Image functionality*/
 
 @Service
 public class PropertyImageService {
@@ -17,7 +18,7 @@ public class PropertyImageService {
         this.propertyImageRepository = propertyImageRepository;
     }
 
-    public List<PropertyImage> getImagesByPropertyId(Integer propertyId) {
+    public List<PropertyImage> getImagesByPropertyId(Integer propertyId) { //getter for all the images
         return propertyImageRepository.findByPropertyId(propertyId);
     }
 }

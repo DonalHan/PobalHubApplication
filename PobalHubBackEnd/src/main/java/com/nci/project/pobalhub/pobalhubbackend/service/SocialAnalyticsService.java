@@ -5,6 +5,7 @@ import com.nci.project.pobalhub.pobalhubbackend.model.SocialAnalytics;
 import com.nci.project.pobalhub.pobalhubbackend.repository.SocialAnalyticsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+/*Main Service logic for the SocialAnalytics functionality*/
 
 @Service
 public class SocialAnalyticsService {

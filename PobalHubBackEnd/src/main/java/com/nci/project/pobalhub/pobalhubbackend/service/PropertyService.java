@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+/*Main Service logic for the Property functionality*/
 
 @Service
 public class PropertyService {
@@ -28,7 +29,8 @@ public class PropertyService {
     }
 
     /*A method that reverse engineers the price appreciation of a property based off of the neighborhood average it comes from*/
-    public Map<Integer, Double> getPropertyAppreciation(Integer propertyId) {
+    public Map<Integer, Double> getPropertyAppreciation(Integer propertyId)
+    {
         /* Retrieve the property */
         Property property = propertyRepository.findById(propertyId).orElse(null);
         /* Validation */
@@ -58,7 +60,7 @@ public class PropertyService {
             /* Store the calculated property price in the map with its corresponding year */
             propertyAppreciation.put(neighborhoodPriceAppreciation.get(i - 1).getYear(), currentPrice);
         }
-        averageGrowthRate = averageGrowthRate / (neighborhoodPriceAppreciation.size() - 1);
+        averageGrowthRate = averageGrowthRate / (neighborhoodPriceAppreciation.size() - 1); //get the average growth rate of the last ten years
         /* Predict the future property prices */
         currentPrice = property.getPrice().doubleValue();
         for (int i = 1; i <= 10; i++) {
