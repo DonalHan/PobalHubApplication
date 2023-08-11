@@ -3,6 +3,7 @@ import { Box, Typography } from '@mui/material';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// This bar chart is boiler plate provided by Nivo Charts:  https://nivo.rocks/
 const MyResponsiveLine = ({ propertyId }) => {
     const [data, setData] = useState([]);
     const [maximumValue, setMaximumValue] = useState([]);

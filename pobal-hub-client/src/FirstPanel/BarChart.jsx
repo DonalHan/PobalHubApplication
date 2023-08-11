@@ -3,6 +3,7 @@ import { ResponsiveBar } from '@nivo/bar';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
+// This bar chart is boiler plate provided by Nivo Charts:  https://nivo.rocks/
 const BarChart = ({ currentHousePrice, neighborhoodId }) => {
   const [neighborhood, setNeighborhood] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -93,8 +94,8 @@ const BarChart = ({ currentHousePrice, neighborhoodId }) => {
                     },
                     labels: {
                       text: {
-                        fill: "#ffa500",    // Here you can change the color of the bar labels
-                        fontSize: 16,       // Here you can change the font size of the bar labels
+                        fill: "#ffa500", 
+                        fontSize: 16, 
                         fontWeight: 700  
                     }
                     }

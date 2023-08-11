@@ -4,17 +4,18 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { Box } from '@mui/material';
 
+//A simple slideshow component that displays four pictures at any given time
 function Slideshow({  images = [] }) {
 
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0); //used to track what picture the user is on
 
-  const handleNext = () => {
+  const handleNext = () => { //handling the next button click
     setActiveIndex((prevActiveIndex) => 
       prevActiveIndex === images.length - 1 ? 0 : prevActiveIndex + 1
     );
   };
 
-  const handlePrev = () => {
+  const handlePrev = () => { //handling the previous button click
     setActiveIndex((prevActiveIndex) => 
       prevActiveIndex === 0 ? images.length - 1 : prevActiveIndex - 1
     );

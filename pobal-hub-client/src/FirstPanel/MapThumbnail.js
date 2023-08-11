@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZG9uYWxkdWNrOTkiLCJhIjoiY2xqZGNzdXk3MDNvbDNkbnFodG5jdWR5dCJ9.5GPgWSsFONJTHpb5nKWdDA';
-
+//This  map thumbnail is boilerplate provided by Mapbox please refer to the final report documentation for full details
 const MapThumbnail = ({ coordinates }) => {
   const mapContainer = useRef(null);
   const map = useRef(null);

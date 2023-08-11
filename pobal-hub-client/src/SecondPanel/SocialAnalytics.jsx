@@ -26,11 +26,11 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
   const [loading, setLoading] = useState(true); // Initialize loading state while the app proccesses social analytics
 
 
-  const handleBackClick = () => {
+  const handleBackClick = () => { //used to handle the back button so the financial analytics will show again
     setShowSocialAnalytics(false);
   };
 
-  useEffect (() =>{
+  useEffect (() =>{ //Used to get the nighborhood crime rate 
     const fetchNeighborhoodCrime = async () =>{
       try{
         setLoading(true); 
@@ -38,15 +38,15 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
         setNeighborhood(response.data);
       }
       catch(error) {
-        console.error(`Failed to fetch neighborhood data: ${error}`)
+        console.error(`Failed to fetch neighborhood data: ${error}`) //valisdation
       } finally {
         setLoading(false); 
       }
     };
-    fetchNeighborhoodCrime();
+    fetchNeighborhoodCrime(); //calling the function
   }, [socialData.houseData.neighborhoodId])
 
-  useEffect(() => {
+  useEffect(() => { //score calculator for crime data. This function returns a score based on the range the crime rate falls into
     if (neighborhood) {
       const calculateCrimeScore = (crimeRate) => {
         if (crimeRate >= 80) {
@@ -61,12 +61,12 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
           return 4;
         }
       };
-      setCrimeScore(calculateCrimeScore(neighborhood.crime));
+      setCrimeScore(calculateCrimeScore(neighborhood.crime)); //pass in the neighborhood that was previously obtained
     }
   }, [neighborhood]);
 
-  const getCrimeAdjective = (crimeScore) => {
-    if (crimeScore >= 16) {
+  const getCrimeAdjective = (crimeScore) => { //take the score previously calculated and get the adjective that correlates with it
+    if (crimeScore >= 16) { 
       return "a very safe";
     } else if (crimeScore >= 12) {
       return "a safe";
@@ -79,7 +79,7 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
     }
   };
   
-  const getAdjective = (score) => {
+  const getAdjective = (score) => { //this populates the summary panel for all social categories
     if (score <= 4) {
       return 'very poor';
     } else if (score <= 8) {
@@ -95,7 +95,7 @@ const SocialAnalytics = ({ socialData, setShowSocialAnalytics }) => {
 
   
   if (loading) {
-    return <div>Loading...</div>; // Or some loading spinner component
+    return <div>Loading...</div>; // loading  component
   }
 
   return (
